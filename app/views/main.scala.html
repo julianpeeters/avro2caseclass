@@ -1,0 +1,23 @@
+@(title: String)(content: Html)
+
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>@title</title>
+
+            <link rel="stylesheet" media="screen" href="@routes.Assets.at("stylesheets/main.css")">
+            <!-- Latest compiled and minified CSS -->
+            <link rel="stylesheet" media="screen" href="@routes.WebJarAssets.at(WebJarAssets.locate("bootstrap.min.css"))">
+
+    </head>
+    <body>
+        @content
+
+        <!-- Bootstrap core JavaScript ================================================== -->
+        <!-- Placed at the end of the document so the pages load faster -->
+        <script src="@routes.WebJarAssets.at(WebJarAssets.locate("jquery.min.js"))"></script>
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="@routes.WebJarAssets.at(WebJarAssets.locate("bootstrap.min.js"))"></script>
+    </body>
+</html>

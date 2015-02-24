@@ -1,0 +1,48 @@
+ @(taskForm: Form[String], classDefAndForms: List[ClassDefAndForm], defaultKey: String)
+
+@import helper._
+
+@main("avro 2 case class") {
+    
+    
+
+    
+
+        <div class="row-fluid">
+          <div class="span12">
+            @form(routes.Application.generate) {
+           
+              @textarea(
+                  taskForm("json"), 
+                  '_label -> "JSON input",
+                  'placeholder -> "paste your json here",
+                  'rows -> 5,
+                  'cols -> 60
+              )
+             
+              <input type="submit" value="Generate"> 
+            }
+        @classDefAndForms.map{cdaf => 
+
+          <div class="row-fluid">
+            <div class="span12">
+
+        
+
+                  @textarea(
+                      cdaf.form(defaultKey), 
+                      '_label -> "Scala result",
+                      'placeholder -> "here is the result",
+                      'rows -> 5,
+                      'cols -> 60
+                  )
+                 
+             
+            </div><!--/span-->
+          </div>
+          }
+        </div><!--/span-->
+      </div>
+
+     <hr>
+}
