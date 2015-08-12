@@ -136,7 +136,14 @@ heroku addons:create mongolab
 heroku ps:scale web=1
 ```
 
+### Development
 
+To develop locally without setting up a MongoLab account, simply start a local MongoDB and point the `mongodb.default.uri` configuration key to it.
+
+~~~bash
+mkdir -p /tmp/avro2caseclass && mongod --dbpath /tmp/avro2caseclass --smallfiles
+sbt run -Dmongodb.default.uri=mongodb://localhost:27017/avro2caseclass
+~~
 
 ###Credits
 
