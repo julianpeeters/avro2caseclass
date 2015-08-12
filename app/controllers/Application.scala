@@ -27,14 +27,14 @@ object Application extends Controller {
   ) 
 
   val defaultView = Ok(views.html.index(taskForm, List(taskForm), ""))
-  val schemasView = Ok(views.html.schemas(MongoModel.all))
+  val schemasView = Redirect(routes.Application.schemas)//Ok(views.html.schemas(MongoModel.all))
 
   def index = Action {
     defaultView
   }
 
   def schemas = Action {
-    schemasView
+    Ok(views.html.schemas(MongoModel.all))//schemasView
   }
 
   def generate = Action { implicit request =>
