@@ -143,3 +143,7 @@ heroku ps:scale web=1
 - based on [json2caseclass](http://json2caseclass.cleverapps.io/)
 - play project based on Mironor's [example](https://github.com/Mironor/Play-2.0-Scala-MongoDb-Salat-exemple).
 - depends on [avrohugger](https://github.com/julianpeeters/avrohugger)
+
+
+Contributors:
+- [Marius Soutier](https://github.com/mariussoutier)
