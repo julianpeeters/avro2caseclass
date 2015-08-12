@@ -143,7 +143,7 @@ To develop locally without setting up a MongoLab account, simply start a local M
 ~~~bash
 mkdir -p /tmp/avro2caseclass && mongod --dbpath /tmp/avro2caseclass --smallfiles
 sbt run -Dmongodb.default.uri=mongodb://localhost:27017/avro2caseclass
-~~
+~~~
 
 ###Credits
 
