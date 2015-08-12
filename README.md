@@ -108,6 +108,11 @@ val sdw = SpecificDatumWriter[MyRecord](schema)
 3) Generated case class fields must be mutable (var) in order to be compatible with the SpecificRecord API.
 
 
+4) The dataset associated with this project is subject to change until either:
+* the project hits version `1.0.0`
+* data is versioned in a data package manager such as dat
+
+
 ###Alternatives
 
 
