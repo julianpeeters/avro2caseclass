@@ -33,7 +33,7 @@ This work is published from:
   <ul>
     @schemas.map { schema =>
       <li>
-          @schema.recordSchema
+          @schema.recordSchema.schema
           <!--
           @form(routes.Application.delete(schema._id.toString)) {
             <input type="submit" value="Delete"> 
