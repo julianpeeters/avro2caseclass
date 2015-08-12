@@ -9,6 +9,13 @@ GET     /                       controllers.Application.index
 # Result page
 GET     /generate               controllers.Application.generate
 
+GET     /download               controllers.Application.download
+
+# History page
+GET     /schemas                controllers.Application.schemas
+
+POST    /schemas                controllers.Application.schemas
+
 POST    /                       controllers.Application.index
 
 # Map static resources from the /public folder to the /assets URL path
@@ -16,3 +23,5 @@ GET     /assets/*file           controllers.Assets.at(path="/public", file)
 
 # Map the webjar static assets to the /webjars URL
 GET     /webjars/*file          controllers.WebJarAssets.at(file)
+
+POST        /schemas/:id/delete        controllers.Application.delete(id: String)

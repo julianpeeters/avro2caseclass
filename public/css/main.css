@@ -1,0 +1,43 @@
+.alternatives {
+   background: #eeeeee;
+   -webkit-border-radius: 4px;
+   -moz-border-radius: 4px;
+   border-radius: 4px;
+   padding: 4px;
+   padding-top:8px;
+}
+input.class_name{
+   margin:10px;
+   border-width:2px;
+}
+
+input.optional_value{
+   float:left;
+   margin-right:3px;
+}
+
+label.label_chkbr{
+   font-style:italic;
+   margin-left:2px;
+   float:right;
+}
+
+.hero-unit{
+   margin-top:20px;
+   padding: 30px !important;
+}
+
+.class_title{
+   background-color:#eeeeee;
+   padding-left:10px;
+   margin-bottom:10px;
+}
+
+#format {
+  width: 225px;
+}
+
+#privacy{
+  margin-top: -2px;
+}
+

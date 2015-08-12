@@ -1,48 +1,106 @@
- @(taskForm: Form[String], classDefAndForms: List[ClassDefAndForm], defaultKey: String)
+@(taskForm: Form[AvroRecordSchema], 
+ resultForms: List[Form[AvroRecordSchema]], 
+ defaultKey: String)
 
 @import helper._
 
 @main("avro 2 case class") {
-    
-    
 
-    
+    <div class="container-fluid">
+      <div class="row-fluid">
+        <div class="span12">
 
-        <div class="row-fluid">
-          <div class="span12">
-            @form(routes.Application.generate) {
-           
-              @textarea(
-                  taskForm("json"), 
-                  '_label -> "JSON input",
-                  'placeholder -> "paste your json here",
-                  'rows -> 5,
-                  'cols -> 60
-              )
-             
-              <input type="submit" value="Generate"> 
-            }
-        @classDefAndForms.map{cdaf => 
+          <div class="hero-unit">
+            <div class="row-fluid">
+              <div class="span9">
+                <img id="logo" class="media-object pull-left" src="@routes.Assets.at("img/avroscala.png")" />
+                <div>
+                  <h1>avro&nbsp;2&nbsp;case&nbsp;class</h1>
+                  <h4>Generate Scala case classes from Avro schemas.</h4>
+                </div>
+              </div>
+              <div class="span3">
+                <h4><i class="icon-share"></i> Share the good news</h4>
+                <p><a href="https://twitter.com/share" class="twitter-share-button" data-size="large" data-related="julianpeeters" data-hashtags="scala">Tweet</a></p>
+                <p><a class="btn" href="http://github.com/julianpeeters/avro2caseclass"><i class="fa fa-github-alt"></i> View on Github</a></p>
+                <p>
+                <g:plusone></g:plusone></p>
+                <p><a href="https://twitter.com/julianpeeters" class="twitter-follow-button" data-show-count="false">Follow @@julianpeeters</a>
+                </p>                
+              </div>
+            </div>
+            <div class="notes">
+              <p><strong>Supported Types: </strong> please refer to the <a href="http://github.com/julianpeeters/avrohugger">ReadMe</a> for documentation.
+              <p><strong>Caveat of Scala SpecificRecords:</strong> Avro's SpecificData cannot reflect Scala's private fields, so preempt it from trying by passing in a schema, e.g.:</p>
+              <p><pre><code>val schema = MyRecord.SCHEMA$ // or `new MyRecord().getSchema`
+val sdw = SpecificDatumWriter[MyRecord](schema)</code></pre></p>
+            </div>
+          </div> <!-- hero -->
 
           <div class="row-fluid">
-            <div class="span12">
-
-        
-
-                  @textarea(
-                      cdaf.form(defaultKey), 
-                      '_label -> "Scala result",
-                      'placeholder -> "here is the result",
-                      'rows -> 5,
-                      'cols -> 60
-                  )
-                 
-             
+            <div class="span12"> 
+              @form(routes.Application.generate, 'class -> "form-horizontal") {
+                @textarea(
+                    taskForm("schema"), 
+                    '_label -> "Schema",
+                    'placeholder -> "paste your schema, idl, protocol, or case class here",
+                    'rows -> 8,
+                    'class -> "row-fluid"
+                )
+                <span id="submission" name="submission" class="pull-right button-group">
+                  <select id="format" name="format" placeholder="select format">
+                    <option value="standard">Standard</option>
+                    <option value="specific">SpecificRecord</option>
+                  </select>
+                  <button type="submit"class="btn btn-primary" id="generate"><strong>Generate</strong></button>
+                  
+                  <div>
+                    <input type="checkbox" id="privacy" name="privacy" value="true"@if(taskForm("privacy").value == Some("true")){ checked}/> Anonymize names. Schemas are collected and <br>&nbsp;made available as a public <a href="@routes.Application.schemas">dataset</a>. <a href="http://opendefinition.org/" ><img src="http://assets.okfn.org/images/ok_buttons/od_80x15_blue.png" alt="This material is Open Data" class="opendata"/></a> 
+                  </div>
+                </span>
+              }
+  
             </div><!--/span-->
-          </div>
-          }
-        </div><!--/span-->
-      </div>
 
-     <hr>
+            @resultForms.zipWithIndex.map{ rf => 
+              <div class="row-fluid">
+                <div class="span12">
+                  @textarea(
+                      rf._1(defaultKey), 
+                      '_label -> {
+                        if (resultForms.length == 1) "Scala result"
+                        else "Scala result " + (rf._2 + 1) + " of " + resultForms.length
+                      },
+                      'placeholder -> "here is the result",
+                      'rows -> 8,
+                      'class -> "row-fluid"
+                  )
+                </div><!--/span-->
+              </div><!--/row-->
+            }
+
+          </div>
+          <div class="alternatives">
+            <p>Use Avro-Scala code generation in your project: 
+              <a class="btn" href="http://github.com/julianpeeters/avrohugger">avrohugger</a>
+              <a class="btn" href="http://github.com/julianpeeters/sbt-avrohugger">sbt-avrohugger</a>
+              <a class="btn" href="http://github.com/julianpeeters/avro-scala-macro-annotations">avro-scala-macro-annotations</a>
+            </p>
+          </div>
+        </div>
+
+      </div>
+      <hr>
+
+      <footer>
+        <p>This software is licensed under Apache 2.0 and was adapted by Julian Peeters from <a href="http://json2caseclass.cleverapps.io/">json2caseclass</a>.
+      </footer>
+
+    </div><!--/.fluid-container-->
+
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+
+    <script type="text/javascript" src="https://apis.google.com/js/plusone.js"></script>
+
+
 }
