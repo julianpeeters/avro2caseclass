@@ -9,8 +9,8 @@ Try it at: [https://avro2caseclass.herokuapp.com/](https://avro2caseclass.heroku
 ![Screenshot](public/img/Screenshot.png)
 
 
-Use cases
-_________
+### Use cases
+
 
 
 Use [Scala case classes](http://docs.scala-lang.org/tutorials/tour/case-classes.html) to represent Avro records allows for clean integration with your Scala project, and get the many benefits that case classes offer.
@@ -22,10 +22,10 @@ Generate:
 - Case classes that implement `SpecificRecordBase` (for use with the Avro Specific API - Scalding, Spark, Avro, etc.).
 
 
-###Formats
+### Formats
 
 
-####Output
+#### Output
 
 
 Source code can be generated in two output formats:
@@ -37,7 +37,7 @@ Source code can be generated in two output formats:
 - SpecificRecord: Implements Avro's `SpecifRecord` with `var` mutable fields required for use with Apache Avro's `Specific` API. For use with Spark, Scalding, and other Apache Avro runtimes.
 
 
-####Input
+#### Input
 
 
 Inputs must be `String` representation fo the following formats:
@@ -54,7 +54,7 @@ All of the Avro input formats can be used to generate both vanilla case class de
 The Scala case class input format can be expanded to implement `SpecificRecordBase`.
 
 
-####Supported Datatypes
+#### Supported Datatypes
 
 
 Supports generating case classes with arbitrary fields of the following datatypes: 
@@ -86,11 +86,11 @@ ARRAY -> List
 
 UNION -> Option
 
-RECORD -> case 
+RECORD -> case classes
 
 
 
-###Warnings
+### Warnings
 
 
 1) Avro's Specific API currently relies on reflection that fails on Scala class because all fields are `private final`. Therefore, preempt Avro's reflection by passing a schema to SpecificDatumWriter's constructor. 
@@ -113,7 +113,7 @@ val sdw = SpecificDatumWriter[MyRecord](schema)
 * data is versioned in a data package manager such as dat
 
 
-###Alternatives
+### Alternatives
 
 
 Integrate Avro Scala code-generation into your project:
@@ -122,11 +122,11 @@ Integrate Avro Scala code-generation into your project:
 - [avro-scala-macro-annotations](https://github.com/julianpeeters/avro-scala-macro-annotations): experimental feature, but allows for '[interactive](http://bit.ly/1TJ42IU)' code generation.
 
 
-###Dataset
+### Dataset
 
 In the spirit of open data, input is collected and made available for download as an Avro datafile.
 
-//TODO: dat integration
+//TODO: dat data package manager integration
 
 
 ###Creating a Heroku app
@@ -150,12 +150,12 @@ mkdir -p /tmp/avro2caseclass && mongod --dbpath /tmp/avro2caseclass --smallfiles
 sbt run -Dmongodb.default.uri=mongodb://localhost:27017/avro2caseclass
 ~~~
 
-###Credits
+### Credits
 
 - based on [json2caseclass](http://json2caseclass.cleverapps.io/)
 - play project based on Mironor's [example](https://github.com/Mironor/Play-2.0-Scala-MongoDb-Salat-exemple).
 - depends on [avrohugger](https://github.com/julianpeeters/avrohugger)
 
 
-Contributors:
+#### Contributors:
 - [Marius Soutier](https://github.com/mariussoutier)
