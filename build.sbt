@@ -1,6 +1,6 @@
 name := "avro2caseclass"
 
-version := "0.0.3"
+version := "0.0.4"
 
 scalaVersion := "2.11.7"
 
@@ -14,6 +14,7 @@ libraryDependencies ++= Seq(
     "org.webjars" % "bootstrap" % "2.3.0",
     "org.webjars" % "font-awesome" % "4.3.0-1",
     "com.julianpeeters" %% "avrohugger-core" % "0.5.2",
+    "org.mongodb" %% "casbah" % "2.8.2",
     "se.radley" %% "play-plugins-salat" % "1.5.0",
     "com.novus" %% "salat" % "1.9.9"
 )    
