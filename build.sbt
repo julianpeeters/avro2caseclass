@@ -1,6 +1,6 @@
 name := "avro2caseclass"
 
-version := "0.0.4"
+version := "0.1.0"
 
 scalaVersion := "2.11.7"
 
@@ -13,7 +13,8 @@ libraryDependencies ++= Seq(
     "org.webjars" %% "webjars-play" % "2.3.0-3", 
     "org.webjars" % "bootstrap" % "2.3.0",
     "org.webjars" % "font-awesome" % "4.3.0-1",
-    "com.julianpeeters" %% "avrohugger-core" % "0.5.2",
+    "com.julianpeeters" %% "avrohugger-core" % "0.6.0",
+    // need to explicitly depend on casbah until salat catches up to Mongolab
     "org.mongodb" %% "casbah" % "2.8.2",
     "se.radley" %% "play-plugins-salat" % "1.5.0",
     "com.novus" %% "salat" % "1.9.9"

@@ -21,6 +21,9 @@ Generate:
 
 - Case classes that implement `SpecificRecordBase` (for use with the Avro Specific API - Scalding, Spark, Avro, etc.).
 
+- Case classes that implement `AvroSerializable` (for use with the Avro Specific API - Scalding, Spark, Avro, etc.).
+
+
 
 ### Formats
 
@@ -34,7 +37,10 @@ Source code can be generated in two output formats:
 - Standard: plain Scala case classes with `val` immutable fields. For use with scalavro, salat-avro, gfc-avro, and other Scala Avro seriliazation runtimes.
 
 
-- SpecificRecord: Implements Avro's `SpecifRecord` with `var` mutable fields required for use with Apache Avro's `Specific` API. For use with Spark, Scalding, and other Apache Avro runtimes.
+- SpecificRecord: Implements Avro's `SpecificRecord` with `var` mutable fields required for use with Apache Avro's `Specific` API. For use with Spark, Scalding, and other Apache Avro runtimes.
+
+
+- Scavro: Implements Scavro's `AvroSerializable` Scala wrapper classes with `val` immutable fields required for use with Apache Avro's `Specific` API. For use with Spark, Scalding, and other Apache Avro runtimes.
 
 
 #### Input
@@ -48,10 +54,8 @@ Inputs must be `String` representation fo the following formats:
 - Scala case class definition as found in `.scala` files
 
 
-All of the Avro input formats can be used to generate both vanilla case class definition, as well as case classes that implement `SpecificRecordBase`.
+Avro2CaseClass will generate vanilla case class definitions, as well as case classes that implement `SpecificRecordBase` or Scavro's `AvroSerializable`.
 
-
-The Scala case class input format can be expanded to implement `SpecificRecordBase`.
 
 
 #### Supported Datatypes
@@ -82,7 +86,7 @@ BYTES -> //TODO
 
 FIXED -> //TODO
 
-ARRAY -> List
+ARRAY -> List, `Scavro`: Array
 
 UNION -> Option
 
@@ -105,7 +109,7 @@ val sdw = SpecificDatumWriter[MyRecord](schema)
 2) Import statements are not supported when generating specific records from standard case class definitions. Use fully qualified type names when generating classes from multiple namespaces.
 
 
-3) Generated case class fields must be mutable (var) in order to be compatible with the SpecificRecord API.
+3) Scavro wrapper classes use the namespace provided by the schema, with 'model' appended so as not to conflict with the Java classes they wrap. Use `sbt-avrohugger` or `avrohugger` directly if one would like to customize package names during code generation.
 
 
 4) The dataset associated with this project is subject to change until either:

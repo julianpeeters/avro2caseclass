@@ -46,6 +46,7 @@ object Application extends Controller {
           val generator = format match {
             case "standard" => new Generator(Standard)
             case "specific" => new Generator(SpecificRecord)
+            case "scavro" => new Generator(Scavro)
           }
           // top-level: RECORD as case class, ENUM as object/Java enum
           val topLevelDefs = generator.stringToStrings(schemaStr).reverse
