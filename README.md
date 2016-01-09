@@ -4,7 +4,7 @@ avro2caseclass
 Generate Scala case class definitions from Avro schemas.
 
 
-Try it at: [https://avro2caseclass.herokuapp.com/](https://avro2caseclass.herokuapp.com/) (hobbyist account, so give 'er a sec to rev up)
+Try it at: [https://avro2caseclass.herokuapp.com/](https://avro2caseclass.herokuapp.com/) (hobbyist account, so give it a sec to rev up)
 
 ![Screenshot](public/img/Screenshot.png)
 
