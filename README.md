@@ -76,7 +76,7 @@ STRING -> String
 
 BOOLEAN -> Boolean
 
-NULL  -> 
+NULL -> Null
 
 MAP -> Map
 
