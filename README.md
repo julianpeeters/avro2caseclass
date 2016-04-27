@@ -23,6 +23,9 @@ Generate:
 
 - Case classes that implement `AvroSerializable` (for use with the Avro Specific API - Scalding, Spark, Avro, etc.).
 
+- `Scavro` Case classes with immutable fields, intended to wrap Java generated
+Avro classes (for use with the [Scavro](https://github.com/oedura/scavro)
+runtime).
 
 
 ### Formats
@@ -82,7 +85,7 @@ MAP -> Map
 
 ENUM -> `Standard`: scala.Enumeration, `Specific`: Java Enum
 
-BYTES -> //TODO
+BYTES -> Array[Byte]
 
 FIXED -> //TODO
 
