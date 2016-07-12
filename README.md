@@ -6,122 +6,15 @@ Generate Scala case class definitions from Avro schemas.
 
 Try it at: [https://avro2caseclass.herokuapp.com/](https://avro2caseclass.herokuapp.com/) (hobbyist account, so give it a sec to rev up)
 
-![Screenshot](public/img/Screenshot.png)
+[![Screenshot](public/img/Screenshot.png)](https://avro2caseclass.herokuapp.com/)
 
 
-### Use cases
+### Supported formats
 
+Please see the [avrohugger docs](https://github.com/julianpeeters/avrohugger) for details
 
 
-Use [Scala case classes](http://docs.scala-lang.org/tutorials/tour/case-classes.html) to represent Avro records allows for clean integration with your Scala project, and get the many benefits that case classes offer.
-
-Generate:
-
-- Vanilla case classes (for use with [Scalavro](https://github.com/GenslerAppsPod/scalavro), [Salat-Avro](https://github.com/julianpeeters/salat-avro), [gfc-avro](https://github.com/gilt/gfc-avro), etc.)
-
-- Case classes that implement `SpecificRecordBase` (for use with the Avro Specific API - Scalding, Spark, Avro, etc.).
-
-- Case classes that implement `AvroSerializable` (for use with the Avro Specific API - Scalding, Spark, Avro, etc.).
-
-- `Scavro` Case classes with immutable fields, intended to wrap Java generated
-Avro classes (for use with the [Scavro](https://github.com/oedura/scavro)
-runtime).
-
-
-### Formats
-
-
-#### Output
-
-
-Source code can be generated in two output formats:
-
-
-- Standard: plain Scala case classes with `val` immutable fields. For use with scalavro, salat-avro, gfc-avro, and other Scala Avro seriliazation runtimes.
-
-
-- SpecificRecord: Implements Avro's `SpecificRecord` with `var` mutable fields required for use with Apache Avro's `Specific` API. For use with Spark, Scalding, and other Apache Avro runtimes.
-
-
-- Scavro: Implements Scavro's `AvroSerializable` Scala wrapper classes with `val` immutable fields required for use with Apache Avro's `Specific` API. For use with Spark, Scalding, and other Apache Avro runtimes.
-
-
-#### Input
-
-
-Inputs must be `String` representation fo the following formats:
-
-- Avro Schema as found in `.avsc` files
-- Avro Protocol as found in `.avpr` files
-- Avro IDL as found in `.avdl` files
-- Scala case class definition as found in `.scala` files
-
-
-Avro2CaseClass will generate vanilla case class definitions, as well as case classes that implement `SpecificRecordBase` or Scavro's `AvroSerializable`.
-
-
-
-#### Supported Datatypes
-
-
-Supports generating case classes with arbitrary fields of the following datatypes: 
-
-
-INT -> Int
-
-LONG -> Long
-
-FLOAT -> Float
-
-DOUBLE -> Double
-
-STRING -> String
-
-BOOLEAN -> Boolean
-
-NULL -> Null
-
-MAP -> Map
-
-ENUM -> `Standard`: scala.Enumeration, `Specific`: Java Enum
-
-BYTES -> Array[Byte]
-
-FIXED -> //TODO
-
-ARRAY -> List, `Scavro`: Array
-
-UNION -> Option
-
-RECORD -> case classes
-
-
-
-### Warnings
-
-
-1) Avro's Specific API currently relies on reflection that fails on Scala class because all fields are `private final`. Therefore, preempt Avro's reflection by passing a schema to SpecificDatumWriter's constructor. 
-
-
-```scala
-val schema = MyRecord.SCHEMA$ // or 'new MyRecord().getSchema'
-val sdw = SpecificDatumWriter[MyRecord](schema)
-```
-
-
-2) Import statements are not supported when generating specific records from standard case class definitions. Use fully qualified type names when generating classes from multiple namespaces.
-
-
-3) Scavro wrapper classes use the namespace provided by the schema, with 'model' appended so as not to conflict with the Java classes they wrap. Use `sbt-avrohugger` or `avrohugger` directly if one would like to customize package names during code generation.
-
-
-4) The dataset associated with this project is subject to change until either:
-* the project hits version `1.0.0`
-* data is versioned in a data package manager such as dat
-
-
-### Alternatives
-
+### Alternative Distributions
 
 Integrate Avro Scala code-generation into your project:
 - [avrohugger](https://github.com/julianpeeters/avrohugger): Scala version of Avro SpecificCompiler and Avro-Tools
